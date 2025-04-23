@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Form - Event Handlers</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #7F00FF, #00BFFF);
+      margin: 0;
+      padding: 40px;
+      color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px #333;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    label {
+      display: inline-block;
+      width: 160px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: calc(100% - 170px);
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      outline: none;
+    }
+
+    input[type="submit"], input[type="reset"] {
+      width: 48%;
+      background-color: #6A5ACD;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      padding: 12px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    input[type="submit"]:hover, input[type="reset"]:hover {
+      background-color: #483D8B;
+    }
+
+    #log {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border-left: 5px solid #FFD700;
+      font-style: italic;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🍽️ Restaurant Entry Form</h2>
+
+<form id="restaurantForm">
+  <label for="name">Restaurant Name:</label>
+  <input type="text" id="name"><br>
+
+  <label for="type">Type:</label>
+  <select id="type">
+    <option value="">Select</option>
+    <option value="veg">Vegetarian</option>
+    <option value="nonveg">Non-Vegetarian</option>
+    <option value="both">Both</option>
+  </select><br>
+
+  <label for="rating">Rating:</label>
+  <input type="range" id="rating" min="1" max="5"><br>
+
+  <label for="location">Location:</label>
+  <input type="text" id="location"><br>
+
+  <label for="desc">Description:</label>
+  <textarea id="desc" rows="4"></textarea><br>
+
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset">
+</form>
+
+<div id="log">Activity log will appear here.</div>
+
+<script>
+  const log = (message) => {
+    document.getElementById("log").innerText = message;
+  }
+
+  document.getElementById("name").addEventListener("focus", () => {
+    log("Focused on Restaurant Name field.");
+  });
+
+  document.getElementById("location").addEventListener("blur", () => {
+    log("You left the Location field.");
+  });
+
+  document.getElementById("type").addEventListener("change", () => {
+    log("Restaurant type changed to " + document.getElementById("type").value);
+  });
+
+  document.getElementById("rating").addEventListener("input", () => {
+    log("Rating selected: " + document.getElementById("rating").value);
+  });
+
+  document.getElementById("desc").addEventListener("keydown", () => {
+    log("Typing in Description...");
+  });
+
+  document.getElementById("restaurantForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    log("Form submitted successfully.");
+  });
+
+  document.getElementById("restaurantForm").addEventListener("reset", () => {
+    log("Form has been reset.");
+  });
+</script>
+
+</body>
+</html>

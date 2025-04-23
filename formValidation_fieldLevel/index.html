@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Facebook Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      padding: 40px;
+    }
+
+    .container {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #1877f2;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .gender {
+      margin-bottom: 12px;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
+    .checkbox {
+      margin-bottom: 12px;
+    }
+
+    button {
+      background-color: #1877f2;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #145dbf;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Facebook Sign Up</h2>
+  <form id="fbForm">
+    <input type="text" id="name" placeholder="Full Name" onblur="validateName()">
+    <div class="error" id="nameError"></div>
+
+    <input type="email" id="email" placeholder="Email Address" onblur="validateEmail()">
+    <div class="error" id="emailError"></div>
+
+    <input type="password" id="password" placeholder="New Password" onblur="validatePassword()">
+    <div class="error" id="passwordError"></div>
+
+    <div class="gender">
+      Gender:
+      <input type="radio" name="gender" value="Male" id="male" onclick="validateGender()"> Male
+      <input type="radio" name="gender" value="Female" id="female" onclick="validateGender()"> Female
+    </div>
+    <div class="error" id="genderError"></div>
+
+    <div class="checkbox">
+      <input type="checkbox" id="terms" onclick="validateTerms()"> I agree to the terms
+    </div>
+    <div class="error" id="termsError"></div>
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<script>
+  function validateName() {
+    const name = document.getElementById("name").value;
+    const error = document.getElementById("nameError");
+    if (name.trim() === "") {
+      error.textContent = "Name is required.";
+    } else {
+      error.textContent = "";
+    }
+  }
+
+  function validateEmail() {
+    const email = document.getElementById("email").value;
+    const error = document.getElementById("emailError");
+    const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!email.match(pattern)) {
+      error.textContent = "Enter a valid email.";
+    } else {
+      error.textContent = "";
+    }
+  }
+
+  function validatePassword() {
+    const password = document.getElementById("password").value;
+    const error = document.getElementById("passwordError");
+    if (password.length < 6) {
+      error.textContent = "Password must be at least 6 characters.";
+    } else {
+      error.textContent = "";
+    }
+  }
+
+  function validateGender() {
+    const error = document.getElementById("genderError");
+    if (!document.getElementById("male").checked && !document.getElementById("female").checked) {
+      error.textContent = "Please select your gender.";
+    } else {
+      error.textContent = "";
+    }
+  }
+
+  function validateTerms() {
+    const error = document.getElementById("termsError");
+    if (!document.getElementById("terms").checked) {
+      error.textContent = "You must agree to the terms.";
+    } else {
+      error.textContent = "";
+    }
+  }
+
+  // Prevent form submit if any errors
+  document.getElementById("fbForm").addEventListener("submit", function(e) {
+    validateName();
+    validateEmail();
+    validatePassword();
+    validateGender();
+    validateTerms();
+
+    if (
+      document.getElementById("nameError").textContent ||
+      document.getElementById("emailError").textContent ||
+      document.getElementById("passwordError").textContent ||
+      document.getElementById("genderError").textContent ||
+      document.getElementById("termsError").textContent
+    ) {
+      e.preventDefault(); // prevent submission
+      alert("Please fix the errors in the form.");
+    }
+  });
+</script>
+
+</body>
+</html>

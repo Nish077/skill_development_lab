@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fibonacci Series</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    #output {
+      margin-top: 20px;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Fibonacci Series Generator</h2>
+  <label>Enter the number of terms: </label>
+  <input type="number" id="nishCount" min="1" value="10">
+  <button onclick="nishGenerateFibonacci()">Generate</button>
+
+  <div id="output"></div>
+
+  <script>
+    function nishGenerateFibonacci() {
+      let count = parseInt(document.getElementById("nishCount").value);
+      let fibSeries = [];
+      let a = 0, b = 1;
+
+      for (let i = 0; i < count; i++) {
+        fibSeries.push(a);
+        let next = a + b;
+        a = b;
+        b = next;
+      }
+
+      document.getElementById("output").innerHTML =
+        "Fibonacci Series (" + count + " terms):<br>" + fibSeries.join(", ");
+    }
+  </script>
+
+</body>
+</html>

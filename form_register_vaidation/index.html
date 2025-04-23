@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Styled Registration Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f9;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background: #ffffff;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: 600;
+      color: #444;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      margin-top: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .output {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 15px 20px;
+      background-color: #e8f5e9;
+      border-left: 5px solid #4CAF50;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Registration Form</h2>
+  <form id="nishRegForm" onsubmit="return nishValidateForm()">
+    <label>First Name:</label>
+    <input type="text" id="nishFirst" required>
+
+    <label>Last Name:</label>
+    <input type="text" id="nishLast" required>
+
+    <label>Organization:</label>
+    <input type="text" id="nishOrg" required>
+
+    <label>Hobbies:</label>
+    <input type="checkbox" name="nishHobby" value="Reading">Reading
+    <input type="checkbox" name="nishHobby" value="Gaming">Gaming
+    <input type="checkbox" name="nishHobby" value="Traveling">Traveling
+    <input type="checkbox" name="nishHobby" value="Music">Music
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div id="nishDisplay" class="output"></div>
+
+  <script>
+    function nishValidateForm() {
+      const first = document.getElementById("nishFirst").value.trim();
+      const last = document.getElementById("nishLast").value.trim();
+      const org = document.getElementById("nishOrg").value.trim();
+
+      const hobbies = Array.from(document.querySelectorAll("input[name='nishHobby']:checked"))
+        .map(cb => cb.value);
+
+      if (!first || !last || !org) {
+        alert("Please fill in all required fields.");
+        return false;
+      }
+
+      if (hobbies.length === 0) {
+        alert("Please select at least one hobby.");
+        return false;
+      }
+
+      document.getElementById("nishDisplay").innerHTML =
+        `<strong>Registration Details:</strong><br>
+         <strong>First Name:</strong> ${first} <br>
+         <strong>Last Name:</strong> ${last} <br>
+         <strong>Organization:</strong> ${org} <br>
+         <strong>Hobbies:</strong> ${hobbies.join(", ")}`;
+
+      return false; // prevent actual form submission
+    }
+  </script>
+
+</body>
+</html>

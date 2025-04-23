@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 30px;
+}
+input, select {
+    width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.btn, input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 80%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+a{
+    text-decoration: none;
+}
